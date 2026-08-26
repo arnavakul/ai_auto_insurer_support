@@ -1,5 +1,6 @@
-from typing import TypedDict
+from .input_state import InputState
 
-class UserInput(TypedDict): 
-    text_message: str
-    documents: list
+class CustomerInteraction(InputState):
+    
+    request_id: str
+    documents: list 
