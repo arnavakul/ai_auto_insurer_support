@@ -11,5 +11,5 @@ llm = ChatGoogleGenerativeAI(
 
 # system_prompt = SYSTEM_PROMPT
 
-if __name__ == "__main__":
-    print("Agent initialization successful")
+# if __name__ == "__main__":
+#     print("Agent initialization successful")

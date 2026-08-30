@@ -3,20 +3,24 @@ import pdfplumber
 from langchain_core.tools import tool
 
 @tool
-def parse_pdf(file_path):
+def extract_information_docs(file_path): 
+    """Extract text and tables from a PDF document."""
     
+    extracted_text = []
+#PDF reader. 
     with open(file_path, "rb") as file: 
         
         reader = pypdf.PdfReader(file)
         
         for index, page in enumerate(reader.pages):
             text = page.extract_text()
-            print(f" Page{index+1}")
-            print(text)
+            
+            if text: 
+                extracted_text.append(
+                    f"Page {index + 1}: \n{text}"
+                )
 
-@tool
-def parse_tables(file_path):
-    
+#Tables reader
     with pdfplumber.open(file_path) as pdf: 
         
         for index, page in enumerate(pdf.pages):
@@ -24,7 +28,35 @@ def parse_tables(file_path):
             tables = page.extract_tables()
             for table in tables: 
                 for row in table:
-                    print([cell for cell in row if cell is not None])
+                    extracted_text.append(
+                        str([cell for cell in row if cell is not None])
+                    )
+    
+    return "\n".join(extracted_text)
+
+# @tool
+# def parse_pdf(file_path):
+    
+#     with open(file_path, "rb") as file: 
+        
+#         reader = pypdf.PdfReader(file)
+        
+#         for index, page in enumerate(reader.pages):
+#             text = page.extract_text()
+#             print(f" Page{index+1}")
+#             print(text)
+
+# @tool
+# def parse_tables(file_path):
+    
+#     with pdfplumber.open(file_path) as pdf: 
+        
+#         for index, page in enumerate(pdf.pages):
+            
+#             tables = page.extract_tables()
+#             for table in tables: 
+#                 for row in table:
+#                     print([cell for cell in row if cell is not None])
 
 
 #test 
