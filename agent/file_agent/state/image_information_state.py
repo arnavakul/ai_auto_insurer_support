@@ -19,22 +19,3 @@ class ImageInformation(BaseModel):
     damage_description: str | None = None
     affected_areas: list[str] = Field(default_factory=list)
 
-
-class ImageInfo(BaseModel):
-    document_type: Literal[
-        "FIR",
-        "REPAIR_ESTIMATE",
-        "DAMAGE_PHOTO",
-        "INVALID",
-        "VEHICLE_DAMAGE_REPORT"
-    ]
-
-    is_readable: bool
-    is_usable: bool
-    confidence: float
-
-    information: ImageInformation
-    
-    witnesses: list[str] = Field(default_factory=list)
-    involved_parties: list[str] = Field(default_factory=list)
-    recommendations: str | None = None

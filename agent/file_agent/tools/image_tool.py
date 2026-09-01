@@ -1,4 +1,4 @@
-from agent.file_agent.state.image_information_state import ImageInfo
+from agent.file_agent.state.document_info_state import DocumentInfo
 from langchain_core.tools import tool
 from google import genai
 from dotenv import load_dotenv  
@@ -13,7 +13,7 @@ client = genai.Client(
 )
 
 @tool
-def extract_information(file_path: str) -> ImageInfo:
+def extract_information(file_path: str) -> DocumentInfo:
     
     """Analyze an uploaded image and extract structured information.""" 
     
@@ -93,11 +93,11 @@ def extract_information(file_path: str) -> ImageInfo:
         contents=[prompt,uploaded_file],
         config={
             "response_mime_type": "application/json",
-            "response_schema": ImageInfo,
+            "response_schema": DocumentInfo,
         }
     )
         
-    return ImageInfo.model_validate_json(response.text)
+    return DocumentInfo.model_validate_json(response.text)
 
 
 #test: 

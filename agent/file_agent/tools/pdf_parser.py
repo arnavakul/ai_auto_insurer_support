@@ -1,9 +1,19 @@
 import pypdf
 import pdfplumber
 from langchain_core.tools import tool
+from agent.file_agent.state.document_info_state import DocumentInfo
+from google import genai
+from dotenv import load_dotenv  
+import os
+
+load_dotenv()
+
+client = genai.Client(
+    api_key = os.getenv("GOOGLE_API_KEY")
+)
 
 @tool
-def extract_information_docs(file_path): 
+def extract_information_docs(file_path: str)-> DocumentInfo: 
     """Extract text and tables from a PDF document."""
     
     extracted_text = []
@@ -32,7 +42,16 @@ def extract_information_docs(file_path):
                         str([cell for cell in row if cell is not None])
                     )
     
-    return "\n".join(extracted_text)
+    response = client.models.generate_content(
+        model="gemini-3.1-flash-lite",
+        contents=[prompt, text],
+        config={
+            "response_mime_type": "application/json",
+            "response_schema": DocumentInfo,
+        },
+    )
+
+    return DocumentInfo.model_validate_json(response.text)
 
 # @tool
 # def parse_pdf(file_path):
