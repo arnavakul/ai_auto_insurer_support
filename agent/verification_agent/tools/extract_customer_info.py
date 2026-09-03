@@ -10,6 +10,7 @@ client = genai.Client(
     api_key = os.getenv("GOOGLE_API_KEY")
 )
 
+
 @tool
 def extract_claim_info(message: str) -> CustomerClaimInfo:
     """Extract structured insurance claim information from the customer's message."""

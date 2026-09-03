@@ -1,7 +1,5 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
 from ....system_prompt import FILE_ASSISTANT_AGENT_PROMPT
 from ...llm import llm
-from langchain.agents import create_agent, AgentState
 from ..tools.image_tool import extract_information
 from ..tools.pdf_parser import extract_information_docs
 from ..state.state_file_agent import FileAssistant
