@@ -1,5 +1,5 @@
 from ....system_prompt import VERIFICATION_AGENT_PROMPT
-from ...llm import llm
+from langchain.agents import create_agent
 from ..tools.extract_customer_info import extract_claim_info
 from ..tools.compare_information import compare_information
 from ..state.verification_agent_state import Verification_State
