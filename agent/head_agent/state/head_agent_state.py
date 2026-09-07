@@ -9,7 +9,7 @@ from verification_agent.state.verification_agent_state import (
 )
 
 
-class HeadAgentState(InputState):
+class CustomerInteraction(InputState):
     customer_claim: CustomerClaimInfo | None = None
 
     documents: list[DocumentInfo] = Field(default_factory=list)
