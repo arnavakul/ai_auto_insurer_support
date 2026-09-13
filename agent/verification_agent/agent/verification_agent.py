@@ -2,7 +2,8 @@ from ....system_prompt import VERIFICATION_AGENT_PROMPT
 from langchain.agents import create_agent
 from ..tools.extract_customer_info import extract_claim_info
 from ..tools.compare_information import compare_information
-from ..state.verification_agent_state import Verification_State
+from ..state.verification_agent_state import VerificationResult
+from ...llm import llm
 
 file_agent = create_agent(
     model=llm,
@@ -11,7 +12,7 @@ file_agent = create_agent(
         compare_information
     ],
     system_prompt=VERIFICATION_AGENT_PROMPT,
-    state_schema = Verification_State
+    state_schema = VerificationResult
 )
 
 #Testing
