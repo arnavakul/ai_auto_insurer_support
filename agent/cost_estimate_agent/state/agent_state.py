@@ -1,4 +1,3 @@
-from ...file_agent.state.image_information_state import ImageInformation
 from pydantic import BaseModel
 
 class CostEstimateRequest(BaseModel):
@@ -14,3 +13,25 @@ class SearchResult(BaseModel):
     title: str
     url: str
     content: str
+class CostEstimate(BaseModel):
+    damaged_parts: list[str] = Field(default_factory=list)
+
+    estimated_min: float | None = None
+    estimated_max: float | None = None
+
+    submitted_estimate: float | None = None
+
+    currency: str = "INR"
+
+    assessment: Literal[
+        "WITHIN_EXPECTED_RANGE",
+        "BELOW_EXPECTED_RANGE",
+        "ABOVE_EXPECTED_RANGE",
+        "INSUFFICIENT_INFORMATION",
+    ]
+
+    explanation: str
+
+    confidence: float
+
+    sources: list[str] = Field(default_factory=list)
