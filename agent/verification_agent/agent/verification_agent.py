@@ -12,7 +12,7 @@ file_agent = create_agent(
         compare_information
     ],
     system_prompt=VERIFICATION_AGENT_PROMPT,
-    state_schema = VerificationResult
+    response_format = VerificationResult
 )
 
 #Testing

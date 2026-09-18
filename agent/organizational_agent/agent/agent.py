@@ -7,5 +7,5 @@ organizing_agent = create_agent(
     model=llm, 
     tools=[],
     system_prompt=ORGANIZATIONAL_AGENT_PROMPT,
-    state_schema=OrganizedClaimPackage
+    response_format=OrganizedClaimPackage
 )

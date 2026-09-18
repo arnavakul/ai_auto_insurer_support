@@ -10,5 +10,5 @@ cost_agent = create_agent(
         repair_estimates
     ],
     system_prompt=COST_ESTIMATE_AGENT_PROMPT,
-    state_schema = CostEstimate
+    response_format = CostEstimate
 )
