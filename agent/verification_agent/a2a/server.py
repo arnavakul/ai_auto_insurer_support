@@ -8,15 +8,15 @@ from a2a.server.routes import (
 
 from a2a.server.tasks import InMemoryTaskStore
 
-from .agent_card import file_agent_card
-from .agent_executor import FileAgentExecutor
+from .agent_card import verification_agent_card
+from .agent_executor import VerificationAgentExecutor
 
 def main(): 
     
-    agent_card = file_agent_card() #creates agent card
+    agent_card = verification_agent_card() #creates agent card
     #this ultimately connects A2A protocol to request handler to executor
     request_handler = DefaultRequestHandler(
-        agent_executor=FileAgentExecutor(),  #creates : A2A → Your agent adapter
+        agent_executor=VerificationAgentExecutor(),  #creates : A2A → Your agent adapter
         task_store=InMemoryTaskStore(),
         agent_card=agent_card, 
     )
@@ -41,7 +41,7 @@ def main():
     uvicorn.run(
         app,
         host="127.0.0.1",
-        port=9001
+        port=9002
     )
 
 if __name__ == "__main__":

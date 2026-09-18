@@ -5,7 +5,7 @@ from ..tools.compare_information import compare_information
 from ..state.verification_agent_state import VerificationResult
 from ...llm import llm
 
-file_agent = create_agent(
+verification_agent = create_agent(
     model=llm,
     tools=[
         extract_claim_info,

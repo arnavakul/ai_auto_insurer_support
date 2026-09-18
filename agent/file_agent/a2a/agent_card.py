@@ -6,7 +6,7 @@ from a2a.types import (
 )
 
 
-def create_file_agent_card() -> AgentCard:
+def file_agent_card() -> AgentCard:
 
     file_processing_skill = AgentSkill(
         id="insurance_document_processing",
