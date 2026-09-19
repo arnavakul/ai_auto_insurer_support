@@ -8,7 +8,8 @@ from verification_agent.state.verification_agent_state import (
     VerificationResult,
 )
 
-
+from ...cost_estimate_agent.state.agent_state import CostEstimate
+from ...organizational_agent.state.state import OrganizedClaimPackage
 class CustomerInteraction(InputState):
     customer_claim: CustomerClaimInfo | None = None
 
@@ -16,9 +17,7 @@ class CustomerInteraction(InputState):
 
     verification_result: VerificationResult | None = None
 
-    next_action: Literal[
-        "PROCESS_FILES",
-        "VERIFY",
-        "ASK_CUSTOMER",
-        "COMPLETE"
-    ] | None = None
+    cost_estimate: CostEstimate | None = None
+
+    organized_claim: OrganizedClaimPackage | None = None
+    next_action: str | None = None
