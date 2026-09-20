@@ -10,17 +10,17 @@ from a2a.types import Role, SendMessageRequest
 COST_AGENT_URL = "http://127.0.0.1:9004/"
 
 @tool
-def file_agent_tool(user_input: str) -> str: 
+def cost_estimation_agent_tool(user_input: str) -> str: 
     
     """
         Estimate the damage of the vehicle and give the cost of repairing.
     """
     
     return asyncio.run(
-        _call_file_agent(user_input)
+        _call_cost_estimation_agent(user_input)
     )
 
-async def _call_file_agent(user_input: str) -> str:
+async def _call_cost_estimation_agent(user_input: str) -> str:
     
     #created the A2A client
     client = await create_client(

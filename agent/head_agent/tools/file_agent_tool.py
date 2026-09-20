@@ -49,8 +49,8 @@ async def _call_file_agent(user_input: str) -> str:
             response.append(response)
         
         return json.dumps(
-            [str(response) for response in responses],
-            default=str,
+            [list(response) for response in responses],
+            default=list,
         )
     finally: 
         await client.close()

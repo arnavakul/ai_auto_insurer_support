@@ -10,17 +10,17 @@ from a2a.types import Role, SendMessageRequest
 ORGANIZATIONAL_AGENT_URL = "http://127.0.0.1:9003/"
 
 @tool
-def file_agent_tool(user_input: str) -> str: 
+def organizational_agent_tool(user_input: str) -> str: 
     
     """
         Organize the documents and the messages and verify of there is a package missing
     """
     
     return asyncio.run(
-        _call_file_agent(user_input)
+        _call_organizational_agent(user_input)
     )
 
-async def _call_file_agent(user_input: str) -> str:
+async def _call_organizational_agent(user_input: str) -> str:
     
     #created the A2A client
     client = await create_client(

@@ -1,6 +1,6 @@
-from ...head_agent.state.head_agent_state import CustomerInteraction
+from ...head_agent.state.head_state import HeadState
 from typing import Any
 from .document_info_state import DocumentInfo
-class FileAssistant(CustomerInteraction): 
+class FileAssistant(HeadState): 
     
     documents: list[DocumentInfo]

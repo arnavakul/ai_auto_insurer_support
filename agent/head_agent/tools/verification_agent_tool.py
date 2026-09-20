@@ -10,17 +10,17 @@ from a2a.types import Role, SendMessageRequest
 VERIFICATION_AGENT_URL = "http://127.0.0.1:9002/"
 
 @tool
-def file_agent_tool(user_input: str) -> str: 
+def verification_agent_tool(user_input: str) -> str: 
     
     """
         Send a claim verification request to the Verification Agent.
     """
     
     return asyncio.run(
-        _call_file_agent(user_input)
+        _call_verification_agent(user_input)
     )
 
-async def _call_file_agent(user_input: str) -> str:
+async def _call_verification_agent(user_input: str) -> str:
     
     #created the A2A client
     client = await create_client(
