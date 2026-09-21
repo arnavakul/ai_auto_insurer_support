@@ -1,5 +1,5 @@
 from langchain.agents import create_agent
-from ....system_prompt import ORGANIZATION_AGENT_PROMPT
+from system_prompt import ORGANIZATION_AGENT_PROMPT
 from ...llm import llm
 from ..state.state import OrganizedClaimPackage
 

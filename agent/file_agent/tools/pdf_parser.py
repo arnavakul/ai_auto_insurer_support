@@ -13,45 +13,73 @@ client = genai.Client(
 )
 
 @tool
-def extract_information_docs(file_path: str)-> DocumentInfo: 
-    """Extract text and tables from a PDF document."""
-    
+def extract_information_docs(file_path: str) -> DocumentInfo:
+    """Extract information from a PDF document."""
+
     extracted_text = []
-#PDF reader. 
-    with open(file_path, "rb") as file: 
-        
+
+    with open(file_path, "rb") as file:
+
         reader = pypdf.PdfReader(file)
-        
+
         for index, page in enumerate(reader.pages):
+
             text = page.extract_text()
-            
-            if text: 
+
+            if text:
                 extracted_text.append(
-                    f"Page {index + 1}: \n{text}"
+                    f"Page {index + 1}:\n{text}"
                 )
 
-#Tables reader
-    with pdfplumber.open(file_path) as pdf: 
-        
+    with pdfplumber.open(file_path) as pdf:
+
         for index, page in enumerate(pdf.pages):
-            
+
             tables = page.extract_tables()
-            for table in tables: 
+
+            for table in tables:
+
                 for row in table:
+
                     extracted_text.append(
-                        str([cell for cell in row if cell is not None])
+                        str(
+                            [
+                                cell
+                                for cell in row
+                                if cell is not None
+                            ]
+                        )
                     )
-    
+
+    text = "\n\n".join(extracted_text)
+
+    prompt = """
+Extract the relevant insurance claim information
+from the supplied document.
+
+Identify the document type and extract all information
+supported by the document.
+
+Do not invent information.
+
+Return the result using the DocumentInfo schema.
+"""
+
     response = client.models.generate_content(
         model="gemini-3.1-flash-lite",
-        contents=[prompt, text],
+        contents=[
+            prompt,
+            text,
+        ],
         config={
             "response_mime_type": "application/json",
             "response_schema": DocumentInfo,
         },
     )
 
-    return DocumentInfo.model_validate_json(response.text)
+    return DocumentInfo.model_validate_json(
+        response.text
+    )
 
 # @tool
 # def parse_pdf(file_path):

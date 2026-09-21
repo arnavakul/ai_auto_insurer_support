@@ -1,4 +1,4 @@
-from ....system_prompt import VERIFICATION_AGENT_PROMPT
+from system_prompt import VERIFICATION_AGENT_PROMPT
 from langchain.agents import create_agent
 from ..tools.extract_customer_info import extract_claim_info
 from ..tools.compare_information import compare_information

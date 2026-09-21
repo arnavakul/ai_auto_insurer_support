@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
+from typing import Literal
 class CostEstimateRequest(BaseModel):
     vehicle_details: str | None = None
     damage_description: str | None = None

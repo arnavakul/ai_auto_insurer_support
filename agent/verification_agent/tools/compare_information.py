@@ -1,6 +1,6 @@
 from langchain_core.tools import tool
 from .extract_customer_info import CustomerClaimInfo
-from file_agent.state.document_info_state import DocumentInfo
+from ...file_agent.state.document_info_state import DocumentInfo
 from ..state.verification_agent_state import FieldComparison,VerificationResult
 from google import genai
 from dotenv import load_dotenv  
